@@ -1,0 +1,257 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <ol class="breadcrumb">
+                       <li class="breadcrumb-item"><a [routerLink]="['../../../..']"><span>Products</span></a></li>
+                         <li class="breadcrumb-item"><a [routerLink]="['../..']"><span>{{ (package == null ? "" : package.activity.name)}}</span></a></li>
+                         <li class="breadcrumb-item"><a href="#"><span>{{ (package == null ? "" : package.name)}}</span></a></li>
+                    </ol>
+                </div>
+                <div class="card-body text-center">
+                    <div  class="p-4" >
+                        <div class="row p-1">
+                            <div class="col-md-2">
+                                <label for="username"><strong>Name</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" [(ngModel)]="package.name" type="text" required placeholder="Enter Activity Name" name="batch_number">
+                            </div>
+                            <div class="col-md-3">
+                                <!-- <button class="btn btn-info btn-sm btn-block" (click)="updateName()" type="button">Save Activity Name</button> -->
+                            </div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-md-2">
+                                <label for="username"><strong>Short Description</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" [(ngModel)]="package.description" type="text" required placeholder="Enter Activity Description" name="batch_number"></textarea>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info btn-sm btn-block" (click)="updatePackage()"  type="button">Update Details</button>
+                            </div>
+                        </div>
+
+                        <div class="p-3">
+                            <tabset *ngIf="package.activity.type == 6"  [justified]="true" class="p-4">
+                                <tab heading="Standard Pricing" >
+                                    <div class=""></div>
+                                    <div class="row p-3">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-6">
+                                            <div *ngFor="let price_key of getKVarray(package.pricings[0].base_price)" class="row" >
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <input class="form-control" (change)="changeKey(price_key, $event.target , package.pricings[0].base_price)"  value="{{price_key}}" type="text" required name="batch_number">
+                                                        <div class="input-group-append">
+                                                          <span class="input-group-text" >Person(s)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text" >Price</span>
+                                                        </div>
+                                                        <input class="form-control" [(ngModel)]="package.pricings[0].base_price[price_key]" type="number" required name="batch_number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-info btn-sm " (click)="addPackagePriceSet(package)" title="ADD"><i class="fas fa-plus-square"></i></button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-info btn-sm "  (click)="removePackagePriceSet(package)" title="REMOVE"><i class="fas fa-minus-square"></i></button>
+                                                </div>
+                                                <div class="col-md-3"></div>
+    
+                            
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-block btn-primary btn-sm " (click)="updatePackagePricing(package.pricings[0])" title="ADD">Update</button>
+                                            </div>
+                                            <div class="col-md-4"></div>
+
+                        
+                                        </div>
+                                    </div>
+                                    <!-- <app-activity-details [activity]="activity"></app-activity-details> -->
+                                </tab>
+                                <tab heading="Specific Date Pricing">
+                                    
+                                    <ul class="list-group p-4">
+                                        <li class="list-group-item list-group-item-success d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-success btn-sm" (click)="addNewDatePricing()" title="ADD">Add New Date</button>
+                                        </li>
+                                        <li *ngFor="let individual_pricing of date_individual_pricings" class="list-group-item">
+                                            <div>
+                                                <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <i>
+                                                                <small>
+                                                                    <span><strong>{{ individual_pricing.individual_dates  | date : 'mediumDate' }}</strong></span>
+                                                                </small>
+                                                            </i>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-info btn-sm " (click)="addSeasonalPackagePriceSet(individual_pricing)" title="Add Priceset"><i class="fas fa-plus-square"></i></button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-info btn-sm "  (click)="removeSeasonalPackagePriceSet(individual_pricing)" title="Remove Priceset"><i class="fas fa-minus-square"></i></button>
+                                                        </div>
+                                                        <!-- <div class="col-md-4">
+                                                            <button class="btn btn-danger btn-sm " (click)="addSeasonalPackagePriceSet(individual_pricing)" title="Delete This Date's Pricing"><i class="fas fa-trash"></i></button>
+                                                        </div> -->
+                                                    </div>
+                                                </li>
+                                            </div>
+                                            
+                                            
+                                            <div class="p-1"></div>
+                                            <div *ngFor="let price_key of getKVarray(individual_pricing.base_price)" class="row" >
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <input class="form-control" (change)="changeKey(price_key, $event.target , individual_pricing.base_price)"  value="{{price_key}}" type="text" required name="batch_number">
+                                                        <div class="input-group-append">
+                                                          <span class="input-group-text" >Person(s)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text" >Price</span>
+                                                        </div>
+                                                        <input class="form-control" [(ngModel)]="individual_pricing.base_price[price_key]" type="number" required name="batch_number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-block btn-primary btn-sm " (click)="updatePackagePricing(individual_pricing)" title="Remove Priceset">Update</button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-block btn-danger btn-sm " (click)="deletePackagePricing(individual_pricing)" title="Delete This Date's Pricing">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+                                            
+                                        </li> 
+                                    </ul>
+                                 
+                                <!-- <app-activity-availability [activity]="activity"></app-activity-availability> -->
+                                </tab>
+                                <tab heading="Range of Date Pricing ">
+                                    
+                                    <ul class="list-group p-4">
+                                        <li class="list-group-item list-group-item-success d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-success btn-sm" (click)="addNewRangePricing()" title="ADD">Add New Range</button>
+                                        </li>
+                                        <li *ngFor="let range_pricing of date_range_pricings" class="list-group-item">
+                                            <div>
+                                                <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <i>
+                                                                <small>
+                                                                    <span>
+                                                                        From 
+                                                                        <strong>{{range_pricing.date_range.split("~")[0]  | date : 'mediumDate' }}</strong> 
+                                                                        To 
+                                                                        <strong>{{range_pricing.date_range.split("~")[1]  | date : 'mediumDate' }}</strong>
+                                                                    </span>
+                                                                </small>
+                                                            </i>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-info btn-sm " (click)="addSeasonalPackagePriceSet(range_pricing)" title="Add Priceset"><i class="fas fa-plus-square"></i></button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-info btn-sm "  (click)="removeSeasonalPackagePriceSet(range_pricing)" title="Remove Priceset"><i class="fas fa-minus-square"></i></button>
+                                                        </div>
+                                                        <!-- <div class="col-md-4">
+                                                            <button class="btn btn-danger btn-sm " (click)="addSeasonalPackagePriceSet(individual_pricing)" title="Delete This Date's Pricing"><i class="fas fa-trash"></i></button>
+                                                        </div> -->
+                                                    </div>
+                                                </li>
+                                            </div>
+                                            <div class="p-1"></div>
+                                            <div *ngFor="let price_key of getKVarray(range_pricing.base_price)" class="row" >
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <input class="form-control" (change)="changeKey(price_key, $event.target , range_pricing.base_price)"  value="{{price_key}}" type="text" required name="batch_number">
+                                                        <div class="input-group-append">
+                                                          <span class="input-group-text" >Person(s)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                          <span class="input-group-text" >Price</span>
+                                                        </div>
+                                                        <input class="form-control" [(ngModel)]="range_pricing.base_price[price_key]" type="number" required name="batch_number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-block btn-primary btn-sm " (click)="updatePackagePricing(range_pricing)"  title="Remove Priceset">Update</button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button class="btn btn-block btn-danger btn-sm " (click)="deletePackagePricing(range_pricing)" title="Delete This Date's Pricing">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3"></div>
+
+                                            </div>
+                                        </li> 
+                                    </ul>
+                                   
+                                </tab>
+                            
+                                <!-- <tab heading="Features">Basic content 2</tab> -->
+                            </tabset>
+                        </div>
+                        
+                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="col-md-12">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                    <div class="row" style="padding: 10px;">
+                            <div class="col"><button class="btn btn-primary btn-sm" (click)="addNewEnhancement()" type="button">Add New Enhancement</button></div>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="username"><strong>Name</strong></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="username"><strong>Price</strong></label>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            <div *ngFor="let enhancement of enhancements" class="row">
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="enhancement.name" type="text" required name="batch_number">
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="form-control" [(ngModel)]="enhancement.base_price" type="text" required name="batch_number">
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-info btn-sm btn-block" (click)="updateEnhancement(enhancement)" type="button">Update</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-danger btn-sm btn-block" (click)="deleteEnhancement(enhancement)" type="button">Delete</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

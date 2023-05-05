@@ -1,0 +1,48 @@
+<div class="row px-5">
+    <div class="col-md-12 ">
+        <div class="d-flex justify-content-around">
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'monday')" id="flexCheckDefault" [checked]= "activity_scheduled_days.includes('MONDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Monday 
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'tuesday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('TUESDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Tuesday
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'wednesday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('WEDNESDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Wednesday
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'thursday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('THURSDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Thursday
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'friday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('FRIDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Friday
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'saturday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('SATURDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Saturday
+                </label>
+            </div>
+            <div class="col-md-2">
+                <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'sunday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('SUNDAY')">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Sunday
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

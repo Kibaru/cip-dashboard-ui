@@ -1,0 +1,80 @@
+<div class="p-4">
+    <tabset [justified]="true">
+       <tab heading="Description">
+        <div *ngIf="activity != null"  class="p-4" >
+            <div class="row p-1">
+                <div class="col-md-2">
+                    <label for="username"><strong>Name</strong></label>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" [(ngModel)]="activity.name" type="text" required placeholder="Enter Activity Name" name="batch_number">
+                </div>
+                <div class="col-md-3">
+                    <!-- <button class="btn btn-info btn-sm btn-block" (click)="updateName()" type="button">Save Activity Name</button> -->
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-md-2">
+                    <label for="username"><strong>Short Description</strong></label>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" [(ngModel)]="activity.desc" type="text" required placeholder="Enter Activity Description" name="batch_number"></textarea>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-info btn-sm btn-block" (click)="updateName()" type="button">Update Details</button>
+                </div>
+            </div>
+            <div class="row p-1">
+                
+                <div class="col-md-4">
+                    <label for="username"><strong>More Details </strong></label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" [(ngModel)]="activity.more_details_text" type="text" required placeholder="Enter Text For More Details" name="batch_number">
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" [(ngModel)]="activity.more_details_url" type="text" required placeholder="Enter Link For More Details" name="batch_number">
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-md-4">
+                    <label for="username"><strong>Second Details </strong></label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" [(ngModel)]="activity.second_details_text" type="text" required placeholder="Enter Text For Second Details" name="batch_number">
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" [(ngModel)]="activity.second_details_url" type="text" required placeholder="Enter Link For Second Details" name="batch_number">
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-md-4">
+                    <label for="username"><strong>Subtext Below Add To Cart </strong></label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" [(ngModel)]="activity.add_to_cart_subtext" type="text" required placeholder="Enter Text" name="batch_number">
+                </div>
+              
+            </div>
+            
+        </div>
+       </tab>
+      
+      <tab heading="Capacity">
+        <div *ngIf="activity.type === 3">
+            <app-activity-capacity-singular></app-activity-capacity-singular>
+        </div>
+        <div *ngIf="activity.type === 2">
+            <app-activity-capacity-agebased></app-activity-capacity-agebased>
+        </div>
+        <div *ngIf="activity.type === 1">
+            Type 1  {{ activity.type }}
+        </div>
+
+          
+        </tab>
+        <tab heading="Photos" >
+            <app-activity-photos></app-activity-photos>
+        </tab>
+    </tabset>
+  </div>

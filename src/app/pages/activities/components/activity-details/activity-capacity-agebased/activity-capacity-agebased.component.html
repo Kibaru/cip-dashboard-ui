@@ -1,0 +1,70 @@
+<div class="p-3">
+    <div class="row p-1">
+            <div class="col-md-4">
+                <label for="username"><strong></strong></label>
+            </div>
+        
+            <div class="col-md-4">
+                <label for="username"><strong>Minimum</strong></label>
+            </div>
+            <div class="col-md-4">
+                <label for="username"><strong>Maximum</strong></label>
+            </div>
+        
+        </div>
+        <div class="row p-1">
+            <div class="col-md-4">
+                <label for="username"><strong>Adults</strong></label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.min_adults" type="text" required placeholder="Enter Minimum Adults" name="batch_number">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.max_adults" type="text" required placeholder="Enter Maximum Adults" name="batch_number">
+            </div>
+        
+        </div>
+        <div class="row p-1">
+            <div class="col-md-4">
+                <label for="username"><strong>Children</strong></label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.min_children" type="text" required placeholder="Enter Minimum Children" name="batch_number">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.max_children" type="text" required placeholder="Enter Maximum Children" name="batch_number">
+            </div>
+        
+        </div>
+        <div class="row p-1">
+            <div class="col-md-4">
+                <label for="username"><strong>Infants</strong></label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.min_infants" type="text" required placeholder="Enter Minimum Infants" name="batch_number">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.max_infants" type="text" required placeholder="Enter Maximum Infants" name="batch_number">
+            </div>
+        
+        </div>
+        <div class="row p-1">
+            <div class="col-md-4">
+                <label for="username"><strong>At any given time</strong></label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.min_capacity" type="text" required placeholder="Enter Minimum" name="batch_number">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" [(ngModel)]="activity.max_capacity" type="text" required placeholder="Enter Maximum" name="batch_number">
+            </div>
+        
+        </div>
+        <div class="row p-1">
+        
+            <div class="col-md-12">
+                <button class="btn btn-info btn-sm" (click)="updateActivityCapacity()" type="button">Save Capacity Details</button>
+            </div>
+            
+        </div>
+    </div>

@@ -1,0 +1,88 @@
+
+<div class="container-fluid">
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <div class="row text-center"  style="padding: 10px;">
+                <p class="text-primary m-0 font-weight-bold">Guests</p>
+                <div class="col text-right">
+                    <button class="btn btn-info btn-sm" type="button" (click)="refresh()">Refresh</button>
+                </div>
+            </div>
+            
+            <!-- <span><button class="btn btn-info btn-sm" type="button" (click)="refresh()">Refresh</button></span> -->
+            
+        </div>
+        <div class="card-body">
+         
+            <!-- <div class=" mt-2"> -->
+                
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Id </th>
+                            <th class="text-center">Entry Date </th>
+                            <th class="text-center">Flight Date</th>
+                            <th class="text-center">First Name</th>
+                            <th class="text-center">Last Name</th>
+                            <th class="text-center">Flight Number</th>
+                            <th class="text-center">Origin </th>
+                            <th class="text-center">Destination </th>
+                            <th class="text-center">Agent </th>
+                            <th class="text-center">Status </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of entries">
+                            <td class="text-center">
+                                {{entry.id}}
+                            </td>
+                            <td class="text-center">
+                                {{entry.created_at | date : 'yyyy-MM-dd '}}
+                            </td>
+                            <td class="text-center">
+                                {{entry.flight_date}}
+                            </td>
+                            <td>
+                                {{entry.first_name}}
+                            </td>
+                            <td class="text-center">
+                                {{entry.last_name}}
+                            </td>
+                            <td>
+                                {{entry.flight_number}}
+                            </td>
+                            <td class="text-center">
+                                {{entry.origin}}
+                            </td>
+                            <td>
+                                {{entry.destination}}
+                            </td>
+                            <td>
+                                <p *ngIf="entry.travel_agent == null">
+                                    --
+                                </p>
+                                <p *ngIf="entry.travel_agent != null">
+                                    {{ entry.travel_agent.full_name }}
+                                </p>
+                                
+                            </td>
+                            <td>
+                                <div *ngIf="entry.is_valid == 1">
+                                    <button class="btn btn-sm btn-success"  *ngIf="entry.redeemed == 1"  >Redeemed</button>
+                                    <button class="btn btn-sm btn-warning"  *ngIf="entry.redeemed == 0"  >Expected</button>
+                                </div>
+                                <div *ngIf="entry.is_valid == 0">
+                                    <button class="btn btn-sm btn-danger" >Invalid</button>
+                                </div>
+                                
+                            </td>
+                            
+                            
+                        </tr>
+                    </tbody>
+                </table>
+          
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="modal-lg" >
+    <div class="form-group" >
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_fname" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>First Name</strong></label>
+                <input required class="form-control" [(ngModel)]="fname"  type="text" >
+            </div>
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_lname" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Surname</strong></label>
+                <input required class="form-control" [(ngModel)]="lname"  type="text" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_flight_date" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Flight Date</strong></label>
+                <input required class="form-control" [(ngModel)]="flight_date"  type="date" >
+            </div>
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_flight_number" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Flight Number</strong></label>
+                <input required class="form-control" [(ngModel)]="flight_number"  type="text" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_flight_origin" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Origin</strong></label>
+                <input required class="form-control" [(ngModel)]="flight_origin"  type="text" >
+            </div>
+            <div class="col-md-6">
+                <label for="username">
+                    <i *ngIf="wrong_flight_destination" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Destination</strong></label>
+                <input required class="form-control" [(ngModel)]="flight_destination"  type="text" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="username">
+                    <i *ngIf="wrong_class" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Class</strong></label>
+                    <select class="form-control form-select" 
+                        [(ngModel)]="compartment_code" >
+                        <option value="">--</option>
+                        <option *ngFor="let class of classes" [ngValue]="class.name"> {{class.name}}</option>
+                    </select>
+                    <p>{{compartment_code}}</p>
+            </div>
+            
+            <div class="col-md-4">
+                <label for="username">
+                    <i *ngIf="wrong_airline" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Airline</strong></label>
+                <select class="form-control form-select" 
+                    [(ngModel)]="airline" >
+                        <option value="">--</option>
+                        <option [ngValue]="a_line.iata_code" *ngFor="let a_line of airlines"> {{a_line.full_name}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="username">
+                    <i *ngIf="wrong_service" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Service</strong></label>
+                <select class="form-control form-select" 
+                    [(ngModel)]="service" >
+                        <option value=""></option>
+                        <option [ngValue]="service.name" *ngFor="let service of services"> {{service.name}}</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <label for="username">
+                    <i *ngIf="wrong_email" class="fas fa-times text-danger"> </i>
+                    &nbsp;&nbsp;<strong>Guest Email</strong></label>
+                <input required class="form-control" [(ngModel)]="email"  type="text" >
+                <label for="username"><strong>Verify Guest Email</strong></label>
+                <input onpaste="return false;" required class="form-control" [(ngModel)]="verify_email"  type="text" >
+            </div>
+            <br>
+            
+        </div>
+
+        <div class="row p-4">
+            <div class="alert alert-info">
+                <strong>Info!</strong> An email will be sent to the guest containing the QR code for entry into the lounge.
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-success mt-5" (click)="saveNewEntry()">Create Voucher</button>
+            </div>
+        </div>
+            
+    </div>
+</div>

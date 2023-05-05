@@ -1,0 +1,37 @@
+<div class="container-fluid p-5">
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">{{activity.name}} Packages</p>
+        </div>
+        <div class="card-body">
+         
+            <!-- <div class=" mt-2"> -->
+                <div class="row text-center"  style="padding: 10px;">
+                    <div class="col"><button class="btn btn-primary btn-sm" type="button" (click)="addNewPackage()" >Add New Product</button></div>
+                </div>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th class="text-center">Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let package of packages">
+                            <td class="text-center">{{package.id}}</td>
+                            <td class="text-center">{{package.name}}</td>
+                            <td>
+                                <a class="btn btn-primary btn-block" type="button" [routerLink]="['package', package.id ]" >Edit</a>
+                                <button class="btn btn-danger btn-block" type="button" (click)="deletePackage(package.id , activity.id)" >Delete</button>                                      
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+          
+        </div>
+       <ngx-ui-loader [fgsType]="spinner" [overlayColor]="'rgba(78, 115, 223,.3)'" [loaderId]="'packages-table-loader'"></ngx-ui-loader>
+    </div>
+    
+</div>

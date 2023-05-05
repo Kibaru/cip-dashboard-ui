@@ -1,0 +1,186 @@
+<div id="activity-type-selector" class="bs-stepper">
+    <div class="bs-stepper-header">
+      <div class="step" data-target="#type-selector-l-0">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">1</span>
+            <span class="bs-stepper-label">Passenger Dependant Pricing</span>
+          </button>
+        </div>
+      <div class="line"></div>
+      <div class="step" data-target="#type-selector-l-1">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">2</span>
+          <span class="bs-stepper-label">Age Considerations</span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#type-selector-l-2">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label">Packages and Sessions</span>
+        </button>
+      </div>
+      
+    </div>
+    <div class="bs-stepper-content">
+      <form (ngSubmit)="onSubmit()">
+        <div id="type-selector-l-0" class="content">
+            <div class="form-group">
+            <div class="row p-1 text-center">
+                <div class="col-md-12">
+                    <label for="username"><strong>Is The Pricing Dependant on number of people booking?  </strong>eg. Price per Person(s) etc.</label>
+                </div>
+                
+                    
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pax_dependant" 
+                        [value]="true"
+                        [(ngModel)]="pax_dependant"
+                        (ngModelChange)="choosePaxDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            YES
+                        </label>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pax_dependant" 
+                        [value]="false"
+                        [(ngModel)]="pax_dependant"
+                        (ngModelChange)="choosePaxDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            NO
+                        </label>
+                        </div>
+                </div>
+                <div class="col-md-12">
+                    <button (click)="previous()" class="btn btn-primary p-1">Previous</button>&nbsp;
+                    <button (click)="pax_next()" class="btn btn-primary p-1">Next</button>
+                    
+
+                </div>
+                
+            </div>
+            </div>
+            
+        </div>
+        <div id="type-selector-l-1" class="content">
+          <div class="form-group">
+            <div class="row p-1 text-center">
+                <div class="col-md-12">
+                    <label for="username"><strong>Do You Intend To Have Different Prices for Adults , Children And Infants ?</strong></label>
+                </div>
+                
+                  
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age_dependant" 
+                        [value]="true"
+                        [(ngModel)]="age_dependant"
+                        (ngModelChange)="chooseAgeDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          YES
+                        </label>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="age_dependant"
+                        [value]="false"
+                        [(ngModel)]="age_dependant"
+                        (ngModelChange)="chooseAgeDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          NO
+                        </label>
+                      </div>
+                </div>
+                <div class="col-md-12">
+                    <button (click)="previous()" class="btn btn-primary p-1">Previous</button>&nbsp;
+                    <button (click)="next()" class="btn btn-primary">Next</button>
+                </div>
+               
+            </div>
+              
+          </div>
+        </div>
+        <div id="type-selector-l-2" class="content">
+            <div class="row p-1 text-center">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="username"><strong>Do You Intend To Have Prices Grouped Into Packages , Timebased sessions or as is?</strong></label>
+                </div> 
+                             
+                <!-- <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Grouped Into Timebased Sessions
+                        </label>
+                      </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Simply Priced as is.
+                        </label>
+                      </div>
+                </div> -->
+               
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                        value="packages"
+                        [(ngModel)]="packages_and_sessions"
+                        (ngModelChange)="choosePackageAndSessionsDependant($event)">
+
+                        <label class="form-check-label" for="flexRadioDefault01">
+                          Grouped Into Packages
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                        value="sessions"
+                        [(ngModel)]="packages_and_sessions"
+                        (ngModelChange)="choosePackageAndSessionsDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault01">
+                          Grouped Into Timebased Sessions
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                        value="none"
+                        [(ngModel)]="packages_and_sessions"
+                        (ngModelChange)="choosePackageAndSessionsDependant($event)">
+                        <label class="form-check-label" for="flexRadioDefault01">
+                          Priced As Is
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <button (click)="previous()" class="btn btn-primary">Previous</button>&nbsp;
+                    <button (click)="next()" class="btn btn-primary">Next</button>
+                </div> 
+            </div>
+
+            
+        </div>
+      </form>
+    </div>
+  </div>

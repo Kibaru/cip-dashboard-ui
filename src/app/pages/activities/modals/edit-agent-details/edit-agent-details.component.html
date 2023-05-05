@@ -1,0 +1,42 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="username"><strong>Agent Company Name</strong></label>
+            <input class="form-control" [(ngModel)]="agent.full_name"  type="text" required name="batch_number">
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="username"><strong>Admin Email</strong></label>
+            <input class="form-control" [(ngModel)]="agent.admin_email"  type="text" required name="batch_number">
+        </div>
+        <div class="col-md-6">
+            <label for="username"><strong>Admin Phone Number</strong></label>
+            <input class="form-control" [(ngModel)]="agent.admin_phone_number"  type="text" required name="batch_number">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="username"><strong>Billing Email</strong></label>
+            <input class="form-control" [(ngModel)]="agent.billing_email"  type="text" required name="batch_number">
+        </div>
+        <div class="col-md-6">
+            <label for="username"><strong>Billing Phone Number</strong></label>
+            <input class="form-control" [(ngModel)]="agent.billing_phone_number"  type="text" required name="batch_number">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="username"><strong>Vouchers Daily Limit</strong></label>
+            <input class="form-control" [(ngModel)]="agent.daily_limit"  type="number" required name="daily_limit">
+        </div>
+       
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-success mt-5" (click)="createUser()">Create User</button>
+        </div>
+    </div> -->
+        
+</div>

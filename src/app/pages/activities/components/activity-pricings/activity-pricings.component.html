@@ -1,0 +1,488 @@
+<div class="p-2">
+   <div class="p-2">
+    <tabset [justified]="true">
+        <tab heading="Standard Pricing">
+            <div class="row p-4">
+                <div class="col-md-12">
+                    <br>
+                    <ng-container [ngSwitch]="true">
+                        <ng-container *ngSwitchCase="this.activity.type === 2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Adults</strong></label>
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Person(s)</strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Base Price</strong></label>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div *ngFor="let price of adult_pricing_keys" class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" [(ngModel)]="standard_pricing.adult_price[price]"  type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="p-3 ">
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="addAdultPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="removeAdultPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                        <div class="row p-3">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+                                                <button class="btn btn-info btn-block btn-sm" (click)="updateAdultPricing(standard_pricing.id)" type="button">Update</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Children</strong></label>
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Person(s)</strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Base Price</strong></label>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div *ngFor="let price of child_pricing_keys" class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" [(ngModel)]="standard_pricing.child_price[price]"  type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="addChildPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="removeChildPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                        <div class="row p-3">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+                                                <button class="btn btn-info btn-block btn-sm" (click)="updateChildPricing(standard_pricing.id)" type="button">Update</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Infants</strong></label>
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Person(s)</strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Base Price</strong></label>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div *ngFor="let price of infant_pricing_keys" class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input class="form-control" [(ngModel)]="standard_pricing.infant_price[price]"  type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="addInfantPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="removeInfantPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                        <div class="row p-3">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+                                                <button class="btn btn-info btn-block btn-sm" (click)="updateInfantPricing(standard_pricing.id)" type="button">Update</button>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <div *ngFor="let price of standard_pricing_keys" class="row">
+                                <div class="col-md-3">
+                                    <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" [(ngModel)]="standard_pricing.base_price[price]"  type="text" required name="batch_number">
+                                </div>
+                              
+                            </div>
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-warning btn-sm " (click)="addStandardPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-warning btn-sm " (click)="removeStandardPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-info btn-block btn-sm" (click)="updateStandardPricing(standard_pricing.id)" type="button">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                
+            </div>
+            <!-- <ul class="list-group">
+                <li  class="list-group-item">
+                    <span><strong> {{standard_pricing.date_range.replace("~", " to ")}}</strong></span>&nbsp;&nbsp;
+                    <button class="btn btn-warning btn-xs" title="Delete"><span class="material-icons">delete</span></button>
+                </li>
+            </ul> -->
+        </tab>
+    
+        <tab heading="Seasonal Prices On Ranges of Dates">
+            <div class="p-3">
+                <button class="btn btn-block btn-success btn-sm" (click)="addSeasonalPriceRange()" type="button">Add New Seasonal Pricing Range</button>
+            </div>
+            <ul class="list-group">
+                <li *ngFor="let pricing of seasonal_pricings_ranges" class="list-group-item">
+                    
+                    <span><strong>From {{pricing.date_range.replace("~", " to ")}}</strong></span><br>
+
+                    
+                    <ng-container [ngSwitch]="true">
+                        <ng-container *ngSwitchCase="this.activity.type === 2">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="username"><strong>Adult</strong></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Person(s)</small></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Base Price</small></label>
+                                            </div>
+                                    
+                                        </div>
+                                        <div *ngFor="let price of getAllKVarray(pricing.adult_price)" class="row">
+                                            <div class="col-md-6">
+                                                <input class="form-control" value="{{price}}"  type="text" required >
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" [(ngModel)]="pricing.adult_price[price]" type="text" required >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="username"><strong>Child</strong></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Person(s)</small></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Base Price</small></label>
+                                            </div>
+                                    
+                                        </div>
+                                        <div *ngFor="let price of getAllKVarray(pricing.child_price)" class="row">
+                                            <div class="col-md-6">
+                                                <input class="form-control" value="{{price}}"  type="text" required >
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" [(ngModel)]="pricing.child_price[price]" type="text" required >
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="username"><strong>Infant</strong></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Person(s)</small></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="username"><small>Base Price</small></label>
+                                            </div>
+                                    
+                                        </div>
+                                        <div *ngFor="let price of getAllKVarray(pricing.infant_price)" class="row">
+                                            <div class="col-md-6">
+                                                <input class="form-control" value="{{price}}" type="text" required >
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="form-control" [(ngModel)]="pricing.infant_price[price]" type="text" required >
+                                            </div>
+                                        </div>
+                  
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-warning btn-sm " (click)="deleteActivityPricing(pricing.id)"  title="ADD">Delete</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>         
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="username"><strong>Person(s)</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Base Price</strong></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="username"><strong></strong></label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div *ngFor="let price of getKVarray(pricing)" class="row">
+                                    <div class="col-md-3">
+                                        <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" [(ngModel)]="pricing.base_price[price]"  type="text" required name="batch_number">
+                                    </div>
+                                  
+                                </div>
+                                <div class="p-3">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-warning btn-sm " (click)="addDateRangePriceset(pricing.id)" title="ADD"><span class="material-icons">add</span></button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button class="btn btn-warning btn-sm " (click)="removeDateRangePriceset(pricing.id)" title="REMOVE"><span class="material-icons">remove</span></button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-info btn-sm btn-block" (click)="updateSingularSeasonalRangePricing(pricing.id)" type="button">Update</button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-danger btn-sm btn-block" (click)="deletePricing(pricing.id)" type="button">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    
+                </li>
+            </ul>
+            <!-- <div *ngFor="let pricing of seasonal_pricings" class="row">
+                <div class="col-md-">
+
+                </div>
+            </div> -->
+
+        </tab>
+        <tab heading="Seasonal Prices On Specific Dates">
+            <div class="p-3">
+                <button class="btn btn-block btn-success btn-sm" (click)="addSeasonalPriceDate()" type="button">Add New Seasonal Pricing</button>
+            </div>
+            <ul class="list-group">
+                <li *ngFor="let pricing of seasonal_pricings_individuals" class="list-group-item">
+                    
+                    <span><strong> On {{pricing.individual_dates}}</strong></span><br>
+                        <ng-container [ngSwitch]="true">
+                            <ng-container *ngSwitchCase="this.activity.type === 2">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="username"><strong>Adult</strong></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Person(s)</small></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Base Price</small></label>
+                                                </div>
+                                        
+                                            </div>
+                                            <div *ngFor="let price of getAllKVarray(pricing.adult_price)" class="row">
+                                                <div class="col-md-6">
+                                                    <input class="form-control" value="{{price}}"  type="text" required >
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" [(ngModel)]="pricing.adult_price[price]" type="text" required >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="username"><strong>Child</strong></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Person(s)</small></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Base Price</small></label>
+                                                </div>
+                                        
+                                            </div>
+                                            <div *ngFor="let price of getAllKVarray(pricing.child_price)" class="row">
+                                                <div class="col-md-6">
+                                                    <input class="form-control" value="{{price}}"  type="text" required >
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" [(ngModel)]="pricing.child_price[price]" type="text" required >
+                                                </div>
+                                            </div>
+                                    
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="username"><strong>Infant</strong></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Person(s)</small></label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="username"><small>Base Price</small></label>
+                                                </div>
+                                        
+                                            </div>
+                                            <div *ngFor="let price of getAllKVarray(pricing.infant_price)" class="row">
+                                                <div class="col-md-6">
+                                                    <input class="form-control" value="{{price}}" type="text" required >
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" [(ngModel)]="pricing.infant_price[price]" type="text" required >
+                                                </div>
+                                            </div>
+                      
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                    <button class="btn btn-warning btn-sm " (click)="deleteActivityPricing(pricing.id)"  title="ADD">Delete</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>         
+                            </ng-container>
+                            <ng-container *ngSwitchDefault>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Person(s)</strong></label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="username"><strong>Base Price</strong></label>
+                                        </div>
+                                        <div class="col-md-2">
+                                        </div>
+                                        <div class="col-md-2">
+                                        </div>
+                                
+                                    </div>
+                                    <br>
+                                    <div *ngFor="let price of getKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <input class="form-control" value="{{price}}" (change)="updatePricingPersons($event , price)" type="text" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.base_price[price]"  type="text" required name="batch_number">
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="addIndividualDateRangePriceset(pricing.id)" title="ADD"><span class="material-icons">add</span></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="removeIndividualDatePriceset(pricing.id)" title="REMOVE"><span class="material-icons">remove</span></button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-info btn-sm btn-block" (click)="updateSingularSeasonalDatePricing(pricing.id)" type="button">Update</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-danger btn-sm btn-block" (click)="deletePricing(pricing.id)" type="button">Delete</button>
+                                            </div>
+            
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    
+                    
+                </li>
+            </ul>
+          
+
+        </tab>
+    </tabset>
+   </div>
+    
+</div>

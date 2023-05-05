@@ -1,0 +1,83 @@
+<div id="wrapper" ng-cloak>
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 d-none d-sm-block">
+        <div class="container-fluid d-flex flex-column p-0">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 py-5" [routerLink]="[{ outlets: { 'main': ['dashboard']}}]">
+                <!-- <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-box"></i></div> -->
+                <div class="sidebar-brand-text mx-3 py-5"><span>CIP PORTAL </span></div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                <!-- <li class="nav-item" role="presentation">
+                    <div class="px-2">
+                        <a class="btn btn-success btn-sm btn-block" (click)="openNewDialog();">
+                            Ocean Tribe<br>
+                            <strong>Switch Merchant</strong>
+                        </a>
+                    </div>
+                </li> -->
+                <li *ngIf="is_portal_view" class="nav-item" role="presentation">
+                    <a class="nav-link"  [routerLink]="[{ outlets: { 'home_view': ['admin']}}]">
+                        <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
+                    </a>
+                </li>
+                <li *ngIf="is_agent_view " class="nav-item" role="presentation">
+                    <a class="nav-link"  [routerLink]="[{ outlets: { 'home_view': ['agent']}}]">
+                        <i class="fas fa-tachometer-alt"></i><span>Your Vouchers</span>
+                    </a>
+                </li>
+                <li *ngIf="is_agent_admin_view " class="nav-item" role="presentation">
+                    <a class="nav-link"  [routerLink]="[{ outlets: { 'home_view': ['agent-users']}}]">
+                        <i class="fas fa-tachometer-alt"></i><span>Users</span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view " class="nav-item" role="presentation">
+                    <a class="nav-link" [routerLink]="[{ outlets: { 'home_view': ['products','activities', ((this.dashboardInfo == undefined) ? 1 : this.dashboardInfo.company.id )  ]}}]">
+                        <i class="fas fa-shopping-bag"></i><span>Products</span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item" role="presentation">
+                    <a class="nav-link" [routerLink]="[{ outlets: { 'home_view': ['agents-list']}}]">
+                        <i class="fas fa-user"></i><span>Agents List</span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item" role="presentation">
+                    <a class="nav-link" [routerLink]="[{ outlets: { 'home_view': ['airlines-list']}}]">
+                        <i class="fas fa-plane"></i><span>Airlines List</span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item" role="presentation">
+                    <a class="nav-link" [routerLink]="[{ outlets: { 'home_view': ['reports']}}]">
+                        <i class="fas fa-file"></i><span>Reports</span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item" role="presentation">
+                    <a class="nav-link " [routerLink]="[{ outlets: { 'home_view': ['admin-agent-users']}}]">
+                        <i class="fas fa-user"></i><span>Agent Users </span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item" role="presentation">
+                    <a class="nav-link " [routerLink]="[{ outlets: { 'home_view': ['users']}}]">
+                        <i class="fas fa-user"></i><span>Portal Users </span>
+                    </a>
+                </li>
+                <li *ngIf="is_admin_view" class="nav-item">
+                    <a class="nav-link " [routerLink]="[{ outlets: { 'home_view': ['configurations']}}]">
+                        <i class="fas fa-fw fa-cog"></i><span>Configurations </span>
+                    </a>
+                </li>
+            </ul>
+            <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->
+        </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <app-top-navbar></app-top-navbar>
+            <router-outlet name="home_view"></router-outlet>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+            </div>
+        </footer>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>   

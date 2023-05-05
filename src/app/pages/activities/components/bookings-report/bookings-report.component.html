@@ -1,0 +1,269 @@
+<div class="container-fluid">
+
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0 d-none d-sm-block">Reports</h3>
+        <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a> -->
+    </div>
+    <div class="row d-flex flex-wrap justify-content-between">
+       
+        <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>Airline</strong></label>
+                            <select class="form-control form-select" 
+                                [(ngModel)]="airline" >
+                                    <option value="0">All</option>
+                                    <option [ngValue]="a_line.iata_code" *ngFor="let a_line of airlines"> {{a_line.full_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>Booking Type</strong></label>
+                            <select class="form-control form-select" 
+                                [(ngModel)]="booking_type" >
+                                    <option value="0">All</option>
+                                    <option value="Walk-In">Walk In</option>
+                                    <option value="Airline-Voucher">Airline Voucher</option>
+                                    <option value="Agent-Voucher">Agent Voucher</option>
+                                    <option value="Online-Booking">Online Booking</option>
+
+                            </select>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="service"><strong>Service</strong></label>
+                            <select class="form-control form-select" 
+                                [(ngModel)]="service" >
+                                    <option value="">All</option>
+                                    <option [ngValue]="service.name" *ngFor="let service of services"> {{service.name}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>Agent</strong></label>
+                            <select class="form-control form-select" 
+                                [(ngModel)]="agent" >
+                                    <option value="0">All</option>
+                                    <option [ngValue]="agent.id" *ngFor="let agent of agents"> {{agent.full_name}}</option>
+
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+                <div class="card shadow border-left-info py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <label for="username"><strong>Status</strong></label>
+                                <select class="form-control form-select" 
+                                    [(ngModel)]="status" >
+                                        <option value="0">All</option>
+                                        <option value ="Redeemed"> Redeemed </option>
+                                        <option value ="Expected"> Expected </option>
+                                        <option value ="Invalid"> Invalid </option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        <!-- <div class="col-md-2 col-xl-2 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>Month</strong></label>
+                            <input class="form-control" [(ngModel)]="report_month"  type="month" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+    </div>
+    <div class="row text-center"  style="padding: 10px;">
+        <div class="col-md-3 col-xl-3 mb-4 d-none d-sm-block">
+        </div>
+        <div class="col-md-3 col-xl-3 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>Start Date</strong></label>
+                            <input class="form-control" [(ngModel)]="start_date"  type="date" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xl-3 mb-4 d-none d-sm-block">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <label for="username"><strong>End Date</strong></label>
+                            <input class="form-control" [(ngModel)]="end_date"  type="date" >
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xl-3 mb-4 d-none d-sm-block">
+            
+        </div>
+    </div>
+    <div class="row text-center"  style="padding: 10px;">
+        <div class="col">
+            <button class="btn btn-success btn-md" type="button" (click)="getEntries()">Filter Records</button>
+        </div>
+    </div>
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <div class="row text-center"  style="padding: 10px;">
+                <p class="text-primary m-0 font-weight-bold">Guests</p>
+                <div class="col text-right">
+                    <button class="btn btn-info btn-sm" type="button" (click)="refresh()">Refresh</button>
+                </div>
+            </div>
+            
+            <!-- <span><button class="btn btn-info btn-sm" type="button" (click)="refresh()">Refresh</button></span> -->
+            
+        </div>
+        <div class="card-body">
+         
+            <!-- <div class=" mt-2"> -->
+                
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th class="text-center">Entry Time</th>
+                            <th class="text-center">Flight Date</th>
+                            <th class="text-center">First Name</th>
+                            <th class="text-center">Last Name</th>
+                            <th class="text-center">Airline</th>
+                            <th class="text-center">Flight Number</th>
+                            <th class="text-center">Booking Type </th>
+                            <th class="text-center">Airline Voucher Number </th>
+                            <th class="text-center">Service </th>
+                            <th class="text-center">Price (Tax Inclusive)</th>
+                            <th class="text-center">Tax </th>
+                            <th class="text-center">Booking Agent </th>
+                            <th class="text-center">Billing Email Address</th>
+                            <th class="text-center">Status </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of entries">
+                            <td class="text-center">{{entry.id}}</td>
+                            <td class="text-center">{{entry.created_at | date : 'medium'}}</td>
+                            <td class="text-center">
+                                {{entry.flight_date}}
+                            </td>
+                            <td>
+                                {{entry.first_name}}
+                            </td>
+                            <td class="text-center">
+                                {{entry.last_name}}
+                            </td>
+                            <td class="text-center">
+                                <p *ngIf="entry.airline == null">
+                                    --
+                                </p>
+                                <p *ngIf="entry.airline != null">
+                                    {{ entry.airline.full_name }}
+                                </p>
+                            </td>
+                            <td>
+                                {{entry.flight_number}}
+                            </td>
+                            
+                         
+                            <td>
+                                {{entry.booking_type}}
+                            </td>
+                            <td>
+                                {{entry.voucher_number}}
+                            </td>
+                            <td>
+                                {{entry.service}}
+                            </td>
+                            <td>
+                                {{entry.price}}
+                            </td>
+                            <td>
+                                {{entry.tax_rate}}
+                            </td>
+                            <td>
+                                <p *ngIf="entry.travel_agent == null">
+                                    --
+                                </p>
+                                <p *ngIf="entry.travel_agent != null">
+                                    {{ entry.travel_agent.full_name }}
+                                </p>
+                                
+                            </td>
+                            <td class="text-center">
+                                <p *ngIf="entry.travel_agent == null">
+                                    --
+                                </p>
+                                <p *ngIf="entry.travel_agent != null">
+                                    {{ entry.travel_agent.billing_email }}
+                                </p>
+                            </td>
+                            <td>
+                                <div *ngIf="entry.is_valid == 1">
+                                    <button class="btn btn-sm btn-success"  *ngIf="entry.redeemed == 1"  >Redeemed</button>
+                                    <button class="btn btn-sm btn-warning"  *ngIf="entry.redeemed == 0"  >Expected</button>
+                                </div>
+                                <div *ngIf="entry.is_valid == 0">
+                                    <button class="btn btn-sm btn-danger" >Invalid</button>
+                                </div>
+                                
+                            </td>
+                            
+                            
+                        </tr>
+                    </tbody>
+                </table>
+          
+        </div>
+    </div>
+</div>

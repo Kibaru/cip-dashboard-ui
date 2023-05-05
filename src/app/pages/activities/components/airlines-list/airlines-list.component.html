@@ -1,0 +1,37 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Airlines List</p>
+        </div>
+        <div class="card-body">
+         
+            <!-- <div class=" mt-2"> -->
+                <div class="row text-center"  style="padding: 10px;">
+                    <div class="col"><button class="btn btn-primary btn-sm" type="button" (click)="addNewAirline()">Add New Airline</button></div>
+                </div>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th class="text-center">Airline Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let airline of airlines">
+                            <td class="text-center">{{airline.id}}</td>
+                            <td class="text-center">
+                                {{airline.full_name}}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-block" type="button" (click)="editAirline(airline)" >Edit</button>
+                                <button class="btn btn-danger btn-block" type="button" (click)="deleteAirline(airline , airline.full_name)" >Delete</button>                                      
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+          
+        </div>
+    </div>
+</div>

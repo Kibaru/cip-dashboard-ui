@@ -1,0 +1,216 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Your Configurations</p>
+        </div>
+        <div class="card-body">
+            <div class="p-3">
+                <tabset [justified]="true" class="p-4">
+                    <tab heading="Company Information" >
+                        <div class="container p-4">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="username"><strong>Name</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.name"  type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="username"><strong>Email</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.email"  type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="username"><strong>Phone</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.phone"  type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="username"><strong>Currency</strong></label>
+                                        <select class="form-control form-select" 
+                                        #mySelect
+                                        (change)='onCurrencySelected(mySelect.value)'
+                                        [(ngModel)]="company_currency.currency_id" >
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">Uganda Shillings - UGX</option>
+                                            <option value="2">Kenya Shillings - KES</option>
+                                            <option value="3">United States Dollar USD</option>
+                                            <option value="4">Tanzania Shillings TZS</option>
+                                            <option value="5">Zambia Kwacha ZMW</option>
+                                            <option value="6">Euro EUR</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="username"><strong>Description</strong></label>
+                                        <textarea class="form-control" rows="6" [(ngModel)]="company.description"  type="text" required name="batch_number"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="username"><strong>Company Cancellation Policy</strong></label>
+                                        <textarea class="form-control" rows="12" [(ngModel)]="company.cancellation_policy"  type="text" required name="policy"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary" (click)="updateConfigurations()">Update</button>
+                                    </div>
+                                </div>                    
+                            </div>
+                        </div>
+                        
+                    </tab>
+                    <tab heading="Widget Configurations">
+                        <div class="container p-4">
+                            <div class="form-group">
+                                <div class="row p-1">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Widget Quantifier Text</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.custom_quantifier_text"  type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Widget Header Text</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.widget_header_text"  type="text" required name="batch_number">
+                                    </div>
+                                </div>
+                                <div class="row p-1">
+                                    
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Widget Special Requests Text</strong></label>
+                                        <textarea class="form-control" rows="5" [(ngModel)]="company.custom_special_req_text"  type="text" required name="batch_number"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Widget Header Subtext</strong></label>
+                                        <textarea class="form-control" rows="5" [(ngModel)]="company.widget_header_subtext"  type="text" required name="batch_number"></textarea>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary" (click)="updateConfigurations()">Update</button>
+                                </div>
+                            </div>                    
+                        </div>
+                        
+                    <!-- <app-activity-availability [activity]="activity"></app-activity-availability> -->
+                    </tab>
+                    <tab heading="Pesapal Keys">
+                        <div class="container p-4">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Consumer Key</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.consumer_key"  type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Consumer Secret</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.consumer_secret"  type="text" required name="batch_number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary" (click)="updateConfigurations()">Update</button>
+                                </div>
+                            </div>                    
+                        </div>
+                    </tab>
+                    <tab heading="Widget Details">
+                        <div class="container p-4">
+                            <div class="row p-1">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                    <div class="text-center p-2">
+                                        <label for="username"><strong>Widget Company Image</strong></label>
+                                        <!-- <button class="btn btn-info btn-sm " (click)="updateName()" type="button">Add New Photo</button> -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img class="img-fluid d-block mx-auto image w-100" 
+                                                                ngp-lazy
+                                                                style="object-fit:contain;width:150px;height:150px;" 
+                                                                [src]="(company.widget_company_image.length > 0) ? company.widget_company_image : ''">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <ngp-image-picker 
+                                                    [_config]="imagePickerConf" 
+                                                    [_imageSrc]="initialImage" 
+                                                    ($imageChanged)="onImageChanged($event)">
+                                                </ngp-image-picker>
+                                            </div>
+                                   
+                                        </div>
+                                                     
+                                        <div  class="row">
+                                            <div class="col-md-4 p-3">
+                                                
+                                    
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="username"><strong>Widget Company Text</strong></label>
+                                    <textarea class="form-control" rows="5" [(ngModel)]="company.widget_company_text"  type="text" required name="batch_number"></textarea>
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8 p-1 text-center">
+                                    <button class="btn btn-primary btn-sm " (click)="updateWidgetCompanyInfo()" type="button">Update</button>
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>  
+                        </div>
+                    </tab>
+                    <tab heading="Voucher Configurations">
+                        <div class="container p-4">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Expiry Time (Hours)</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.voucher_expiry_time"  type="number" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Default Tax Rate (%)</strong></label>
+                                        <input class="form-control" [(ngModel)]="company.default_tax_rate"  type="number" required name="batch_number">
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary" (click)="updateConfigurations()">Update</button>
+                                </div>
+                            </div>                    
+                        </div>
+                    </tab>
+                </tabset>
+            </div>
+            
+
+        </div>
+    </div>
+</div>

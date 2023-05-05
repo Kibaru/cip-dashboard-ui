@@ -1,0 +1,55 @@
+<!-- <mk-box-info header="Header text" footer="Footer text" backgroundColor="yellow">
+    Content text
+</mk-box-info> -->
+<div class="container-fluid">
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0 d-none d-sm-block">Dashboard</h3>
+        <!-- <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a> -->
+    </div>
+    <!-- <div *ngIf="dashboardInfo.agent_user_is_admin == 1" class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Daily Vouchers Remaining</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span>{{ dashboardInfo.daily_vouchers_remaining }}</span></div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+   
+  
+    <div class="row p-4" >
+        <div *ngIf="dashboardInfo.daily_vouchers_remaining > 0 " class="col-md-12 text-center">
+            <button class="btn btn-success btn-sm " type="button" (click)="generateNewVoucher()">
+                Generate New Voucher
+            </button>
+        </div>
+        <div *ngIf="dashboardInfo.agent_user_is_admin " class="col-md-12 text-center">
+            
+            <div *ngIf="dashboardInfo.daily_vouchers_remaining < 1 " class="p-4 text-center">
+                <div class="col-md-12 text-center">
+                    <div class="alert alert-danger text-center">
+                        <strong>Daily Limit Exceeded!</strong>
+                        <br> The allowed vouchers generated per day has been exceed. Kindly contact CIP Lounge To Increase Your Limit.
+                        
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    
+    
+    <div class="row d-none d-sm-block">
+        <div *ngIf="dashboardInfo.agent_user_is_admin == 1" class="col-md-12">
+            <app-vouchers-table></app-vouchers-table>
+        </div>
+        <div *ngIf="dashboardInfo.agent_user_is_admin == 0" class="col-md-12">
+            <app-user-vouchers-table></app-user-vouchers-table>
+        </div>
+    </div>
+</div>

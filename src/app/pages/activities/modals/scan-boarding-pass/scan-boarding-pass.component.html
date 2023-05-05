@@ -1,0 +1,114 @@
+<div class="modal-lg" >
+
+    <div *ngIf="scanning_barcode && !scan_completed" class="form-group">
+        <div class="text-center">
+            <div class="col-md-6">
+                <!-- <input class="form-control" [(ngModel)]="qrResultString"  type="text"> -->
+            </div>
+            <h4>Scan The Barcode Using The Barcode Scanner</h4>
+            
+        </div>
+    </div>
+    <div *ngIf="scanning_boarding_pass && !scan_completed" class="form-group">
+        <div class="text-center">
+            <div class="col-md-6">
+                <!-- <input class="form-control" [(ngModel)]="qrResultString"  type="text"> -->
+            </div>
+            <h4>Scan The Boarding Pass Using The Barcode Scanner</h4>
+            
+        </div>
+    </div>
+    <div *ngIf="scan_completed" class="form-group" style="height: 250px; overflow-y:scroll;">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username"><strong>First Name</strong></label>
+                <input class="form-control" [(ngModel)]="fname"  type="text" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="username"><strong>Surname</strong></label>
+                <input class="form-control" [(ngModel)]="lname"  type="text" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username"><strong>Flight Date</strong></label>
+                <input class="form-control" [(ngModel)]="flight_date"  type="text" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="username"><strong>Flight Number</strong></label>
+                <input class="form-control" [(ngModel)]="flight_number"  type="text" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username"><strong>Origin</strong></label>
+                <input class="form-control" [(ngModel)]="flight_origin"  type="text" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="username"><strong>Destination</strong></label>
+                <input class="form-control" [(ngModel)]="flight_destination"  type="text" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="username"><strong>Class</strong></label>
+                <input class="form-control" [(ngModel)]="compartment_code"  type="text" readonly>
+            </div>
+            <!-- <div class="col-md-6">
+                <label for="username"><strong>Route</strong></label>
+                <select class="form-control form-select" 
+                    [(ngModel)]="route" >
+                        <option value="0">Please select</option>
+                        <option value="arrival">Arrival</option>
+                        <option value="departure">Departure</option>
+                </select>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="username"><strong>Airline</strong></label>
+                <select class="form-control form-select" 
+                    [(ngModel)]="airline" >
+                        <option [ngValue]="a_line.iata_code" *ngFor="let a_line of airlines"> {{a_line.full_name}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="username"><strong>Type</strong></label>
+                <select class="form-control form-select" 
+                (change)="bookingTypeChanged()"
+                    [(ngModel)]="booking_type" >
+                        <option value="0">Please select</option>
+                        <option value="Walk-In">Walk In</option>
+                        <option value="Airline-Voucher">Airline Voucher</option>
+                        <!-- <option value="Agent-Voucher">Agent Voucher</option> -->
+
+                </select>
+            </div>
+        </div>
+        <div *ngIf="!is_airline_voucher" class="row">
+            <div class="col-md-12">
+                <label for="service"><strong>Service</strong></label>
+                <select class="form-control form-select" 
+                    [(ngModel)]="service" >
+                        <option value="CIP Lounge Access">Please select</option>
+                        <option [ngValue]="service.name" *ngFor="let service of services"> {{service.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="is_airline_voucher" class="row">
+            <div class="col-md-12">
+                <label for="voucher_number"><strong>Voucher Number</strong></label>
+                <input class="form-control" [(ngModel)]="voucher_number"  type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-success mt-5" (click)="saveNewEntry()">Save Guest</button>
+            </div>
+        </div>
+            
+    </div>
+
+
+</div>
+

@@ -1,0 +1,720 @@
+<div class="container-fluid">
+    <div id="stepper1" class="bs-stepper">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#test-l-0">
+            <button class="step-trigger">
+              <span class="bs-stepper-circle">1</span>
+              <span class="bs-stepper-label">Passenger Dependant Pricing</span>
+            </button>
+          </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-1">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">2</span>
+            <span class="bs-stepper-label">Age Considerations</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-2">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">3</span>
+            <span class="bs-stepper-label">Packages and Sessions</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-3">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">4</span>
+            <span class="bs-stepper-label">Details</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-4">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">5</span>
+            <span class="bs-stepper-label">Availability</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-5">
+          <button class="step-trigger">
+            <span class="bs-stepper-circle">6</span>
+            <span class="bs-stepper-label">Pricing</span>
+          </button>
+        </div>
+      </div>
+      <div class="bs-stepper-content">
+        <form (ngSubmit)="onSubmit()">
+            <div id="test-l-0" class="content">
+                <div class="form-group">
+                <div class="row p-1 text-center">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Is The Pricing Dependant on number of people booking?  </strong>eg. Price per Person(s) etc.</label>
+                    </div>
+                    
+                        
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pax_dependant" 
+                            [value]="true"
+                            [(ngModel)]="pax_dependant"
+                            (ngModelChange)="choosePaxDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                YES
+                            </label>
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pax_dependant" 
+                            [value]="false"
+                            [(ngModel)]="pax_dependant"
+                            (ngModelChange)="choosePaxDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                NO
+                            </label>
+                            </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button (click)="previous()" class="btn btn-primary p-1">Previous</button>&nbsp;
+                        <button (click)="pax_next()" class="btn btn-primary p-1">Next</button>
+                        
+    
+                    </div>
+                    
+                </div>
+                </div>
+                
+            </div>
+            <div id="test-l-1" class="content">
+              <div class="form-group">
+                <div class="row p-1 text-center">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Do You Intend To Have Different Prices for Adults , Children And Infants ?</strong></label>
+                    </div>
+                    
+                      
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="age_dependant" 
+                            [value]="true"
+                            [(ngModel)]="age_dependant"
+                            (ngModelChange)="chooseAgeDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              YES
+                            </label>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="age_dependant"
+                            [value]="false"
+                            [(ngModel)]="age_dependant"
+                            (ngModelChange)="chooseAgeDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              NO
+                            </label>
+                          </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button (click)="previous()" class="btn btn-primary p-1">Previous</button>&nbsp;
+                        <button (click)="next()" class="btn btn-primary">Next</button>
+                    </div>
+                   
+                </div>
+                  
+              </div>
+            </div>
+            <div id="test-l-2" class="content">
+                <div class="row p-1 text-center">
+    
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Do You Intend To Have Prices Grouped Into Packages , Timebased sessions or as is?</strong></label>
+                    </div> 
+                                 
+                    <!-- <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Grouped Into Timebased Sessions
+                            </label>
+                          </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Simply Priced as is.
+                            </label>
+                          </div>
+                    </div> -->
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                            value="packages"
+                            [(ngModel)]="packages_and_sessions"
+                            (ngModelChange)="choosePackageAndSessionsDependant($event)">
+    
+                            <label class="form-check-label" for="flexRadioDefault01">
+                              Grouped Into Packages
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                            value="sessions"
+                            [(ngModel)]="packages_and_sessions"
+                            (ngModelChange)="choosePackageAndSessionsDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault01">
+                              Grouped Into Timebased Sessions
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="packages_and_sessions" 
+                            value="none"
+                            [(ngModel)]="packages_and_sessions"
+                            (ngModelChange)="choosePackageAndSessionsDependant($event)">
+                            <label class="form-check-label" for="flexRadioDefault01">
+                              Priced As Is
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <button (click)="previous()" class="btn btn-primary">Previous</button>&nbsp;
+                        <button (click)="next()" class="btn btn-primary">Next</button>
+                    </div> 
+                </div>
+    
+                
+            </div>
+            <div id="test-l-3" class="content">
+                <div class="form-group">
+                    <div class="p-4">
+                        <tabset [justified]="true">
+                        <tab heading="Description">
+                            <div class="p-4" >
+                                <div class="row p-1">
+                                    <div class="col-md-2">
+                                        <label for="username"><strong>Name</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" [(ngModel)]="activity.name" type="text" required placeholder="Enter Product Name" name="name">
+                                    </div>
+                                
+                                </div>
+                                <div class="row p-1">
+                                    <div class="col-md-2">
+                                        <label for="username"><strong>Short Description</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" [(ngModel)]="activity.desc" type="text" required placeholder="Enter Product Description" name="description"></textarea>
+                                    </div>
+                                
+                                </div>
+                                
+                            </div>
+                        </tab>
+                        
+                        <tab heading="Capacity">
+                                <div class="p-3">
+                                    <div class="row p-1">
+                                            <div class="col-md-4">
+                                                <label for="username"><strong></strong></label>
+                                            </div>
+                                        
+                                            <div class="col-md-4">
+                                                <label for="username"><strong>Minimum</strong></label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="username"><strong>Maximum</strong></label>
+                                            </div>
+                                        
+                                        </div>
+                                
+                                        <div class="row p-1">
+                                            <div class="col-md-4">
+                                                <label for="username"><strong>At any given time</strong></label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input class="form-control" [(ngModel)]="activity.min_capacity" type="text" required placeholder="Enter Minimum Capacity" name="min_capacity">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input class="form-control" [(ngModel)]="activity.max_capacity" type="text" required placeholder="Enter Maximum Capacity" name="max_capacity">
+                                            </div>
+                                        
+                                        </div>
+                                    
+                                </div>
+                            
+                    
+                            
+                            </tab>
+                            <tab heading="Photos" >
+                                <div class="row p-5">
+                                    <div class="col-md-5">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <ngp-image-picker 
+                                            [_config]="imagePickerConf" 
+                                            [_imageSrc]="initialImage" 
+                                            ($imageChanged)="onImageChanged($event)">
+                                        </ngp-image-picker>
+                                    </div>
+                                    <div class="col-md-5">
+                                    </div>
+                                </div>
+                                <div class="row"  *ngIf="(imageEncoding !== '')">
+                                    <div class="col-md-5">
+                                    </div>
+                                    <!-- <div class="col-md-2 p-1">
+                                        <button class="btn btn-info btn-sm " (click)="uploadPhoto()" type="button">Add Photo</button>
+                                    </div> -->
+                                    <div class="col-md-5">
+                                    </div>
+                                </div> 
+                            </tab>
+                        </tabset>
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <button (click)="previous()" class="btn btn-primary">Previous</button>&nbsp;
+                                <button (click)="next()" class="btn btn-primary">Next</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <!-- <button (click)="next()" class="btn btn-primary">Next</button> -->
+            </div>
+            <div id="test-l-4" class="content">
+                <div class="form-group">
+
+                    <div class="well">
+                        <div class="card card-body bg-light p-2 ">
+                            <div class="row px-5">
+                                <div class="col-md-12 ">
+                                    <div class="d-flex justify-content-around">
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'monday')" id="flexCheckDefault" [checked]= "activity_scheduled_days.includes('MONDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Monday 
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'tuesday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('TUESDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Tuesday
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'wednesday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('WEDNESDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Wednesday
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'thursday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('THURSDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Thursday
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'friday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('FRIDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Friday
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'saturday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('SATURDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Saturday
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input class="form-check-input" type="checkbox" (change)="scheduledDaysChanged($event , 'sunday')" value="" id="flexCheckDefault" [checked]="activity_scheduled_days.includes('SUNDAY')">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Sunday
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <button (click)="previous()" class="btn btn-primary">Previous</button>&nbsp;
+                            <button (click)="next()" class="btn btn-primary">Next</button>
+                        </div> 
+                    </div>
+            </div>
+            <div id="test-l-5" class="content text-center">
+                <div class="col-md-12">
+                    
+                    <div *ngIf="activity_type == 3 || activity_type == 1">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Price</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngFor="let price_key of standard_pricing_keys" class="row">
+                            <div class="col-md-3">
+                                <!-- <input class="form-control" value="{{price_key}}" (change)="updatePricingPersons($event , price_key)" type="text" required name="batch_number"> -->
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" [(ngModel)]="standard_pricing.base_price[price_key]"  type="number" required name="batch_number">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="activity_type == 2">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Price</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngFor="let price_key of infant_pricing_keys" class="row">
+                            <div class="col-md-3">
+                                <label for="username"><strong>Infant</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" [(ngModel)]="standard_pricing.infant_price[price_key]"  type="number" required name="batch_number">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                        <div *ngFor="let price_key of children_pricing_keys" class="row">
+                            <div class="col-md-3">
+                                <label for="username"><strong>Child</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" [(ngModel)]="standard_pricing.children_price[price_key]"  type="number" required name="batch_number">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                        <div *ngFor="let price_key of adult_pricing_keys" class="row">
+                            <div class="col-md-3">
+                                <label for="username"><strong>Adult</strong></label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" [(ngModel)]="standard_pricing.adult_price[price_key]"  type="number" required name="batch_number">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="activity_type == 4 || activity_type == 6">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Sessions</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- <div class="col-md-3">
+                                <strong>Session Description</strong>
+                            </div> -->
+                        
+                            <div class="col-md-8">
+                                <strong>Package Name</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Package Price</strong>
+                            </div>
+                        </div>
+                        <div *ngFor="let pricing of singular_package_pricing_data" class="row">
+                            <!-- <div class="col-md-3">
+                                <input class="form-control" [(ngModel)]="pricing.description"  type="number" required name="description">
+                            </div> -->
+                            
+                            <div class="col-md-8">
+                                <input class="form-control" [(ngModel)]="pricing.name"  type="text" required name="start_time">
+                            </div>
+                    
+                            <div class="col-md-4">
+                                <input class="form-control" [(ngModel)]="pricing.base_price[1]"  type="number" required name="base_price">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="addSingularPackagePriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="removeSingularPackagePriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="activity_type == 5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Price</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngFor="let pricing of agebased_package_pricing_data" class="row pb-2">
+                                <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <label for="package_name"><strong>Package Name</strong></label>
+                                    </div>
+                                    <input class="form-control" [(ngModel)]="pricing.name"  type="text" required name="package_name">
+                                </div>
+                                <div class="col-md-6">
+                                    <div *ngFor="let price_key of getInfantKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Infant</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.infant_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let price_key of getChildKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Child</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.children_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let price_key of getAdultKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Adult</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.adult_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>       
+                                </div>
+                                <br>
+                                <div class="line"></div>
+
+                            </div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="addAgeBasedPackagePriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="removeAgeBasedPackagePriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                </div>
+                                
+                            </div>
+                        </div>                        
+                    </div>
+                    <div *ngIf="activity_type == 9 || activity_type == 7">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Sessions</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- <div class="col-md-3">
+                                <strong>Session Description</strong>
+                            </div> -->
+                            <div class="col-md-4">
+                                <strong>Session Start time</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Session End Time</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Session Price</strong>
+                            </div>
+                        </div>
+                        <div *ngFor="let pricing of singular_session_pricing_data" class="row">
+                            <!-- <div class="col-md-3">
+                                <input class="form-control" [(ngModel)]="pricing.description"  type="number" required name="description">
+                            </div> -->
+                            
+                            <div class="col-md-4">
+                                <input class="form-control" [(ngModel)]="pricing.start_time"  type="time" required name="start_time">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" [(ngModel)]="pricing.end_time"  type="time" required name="end_time">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" [(ngModel)]="pricing.base_price[1]"  type="number" required name="base_price">
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="addSingularSessionPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="removeSingularSessionPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="activity_type == 8">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="username">
+                                    <!-- <strong>Person(s)</strong> -->
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="username"><strong>Price</strong></label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="username"><strong></strong></label>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngFor="let pricing of agebased_session_pricing_data" class="row pb-2">
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="package_name"><strong>Session Start</strong></label>
+                                    </div>
+                                    <input class="form-control" [(ngModel)]="pricing.start_time"  type="time" required name="session_end">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <label for="package_name"><strong>Session End</strong></label>
+                                    </div>
+                                    <input class="form-control" [(ngModel)]="pricing.end_time"  type="time" required name="session_start">
+                                </div>
+                                <div class="col-md-6">
+                                    <div *ngFor="let price_key of getInfantKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Infant</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.infant_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let price_key of getChildKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Child</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.children_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let price_key of getAdultKVarray(pricing)" class="row">
+                                        <div class="col-md-3">
+                                            <label for="username"><strong>Adult</strong></label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" [(ngModel)]="pricing.adult_price[price_key]"  type="number" required name="batch_number">
+                                        </div>
+                                        <div class="col-md-3">
+                                        </div>
+                                    </div>       
+                                </div>
+                                <br>
+                                <div class="line"></div>
+
+                            </div>
+                        <div class="p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="addAgeBasedSessionPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-warning btn-sm " (click)="removeAgeBasedSessionPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                                </div>
+                                
+                            </div>
+                        </div>                        
+                    </div>
+                    
+                    <!-- <div class="p-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-warning btn-sm " (click)="addStandardPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-warning btn-sm " (click)="removeStandardPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info btn-block btn-sm" (click)="updateStandardPricing(standard_pricing.id)" type="button">Update</button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <button (click)="previous()" class="btn btn-primary mt-5">Previous</button>&nbsp;
+                        <button type="submit" class="btn btn-primary mt-5" (click)="addNewItem()">Submit</button>
+                    </div> 
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,20 @@
+<div class="p-2">
+    <div class="card card-body bg-light p-2 ">
+        <h5 class="card-title">Scheduled Days</h5>
+        <app-scheduled-days></app-scheduled-days>
+
+   </div>
+   <div class="p-2">
+    <tabset [justified]="true">
+        <tab heading="Specific Date Ranges Available">
+            <app-specific-date-ranges></app-specific-date-ranges>
+        </tab>
+    
+        <tab heading="Specific Individual Dates Available">
+            <app-specific-individual-dates></app-specific-individual-dates>
+
+        </tab>
+    </tabset>
+   </div>
+    
+</div>

@@ -1,0 +1,42 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <ol class="breadcrumb">
+                           <li class="breadcrumb-item"><a [routerLink]="['../..']"><span>Products</span></a></li>
+                             <li class="breadcrumb-item"><a href="#"><span>{{ (activity == null ? "" : activity.name)}}</span></a></li>
+                        </ol>
+                    </div>
+                    <div class="card-body text-center">
+                        <div *ngIf="activity != null">
+                            <tabset [justified]="true">
+                              <tab heading="Details" id="tab1">
+                                  <app-activity-details [activity]="activity"></app-activity-details>
+                                </tab>
+                              <tab heading="Availability">
+                                <app-activity-availability [activity]="activity"></app-activity-availability>
+                              </tab>
+                              <tab *ngIf="((activity.type == 4 ) || (activity.type == 5 ) || (activity.type == 6 ))" heading="Packages">
+                                <app-activity-packages [activity]="activity"></app-activity-packages>
+                              </tab>
+                              <tab *ngIf="((activity.type == 7 ) || (activity.type == 8 ) || (activity.type == 9 ))" heading="Sessions">
+                                <app-activity-session-pricings></app-activity-session-pricings>
+                              </tab>
+                              <tab  heading="Inclusions">
+                                <app-activity-inclusions></app-activity-inclusions>
+                              </tab>
+                              <tab  heading="Enhancements">
+                                <app-activity-enhancements></app-activity-enhancements>
+                              </tab>
+                              <tab *ngIf="((activity.type == 1 ) || (activity.type == 2 ) || (activity.type == 3 ))" heading="Pricing">
+                                <app-activity-pricings></app-activity-pricings>
+                              </tab>
+                              <!-- <tab heading="Features">Basic content 2</tab> -->
+                            </tabset>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

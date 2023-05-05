@@ -1,0 +1,25 @@
+<div class="modal-lg" >
+
+    <div  class="form-group">
+        <div class="text-center">
+            
+            <p>
+                Are you sure you want to invalidate the voucher for 
+                <b>{{ voucher.first_name }} {{ voucher.last_name }} </b>
+                 boarding flight 
+                 <b> {{ voucher.flight_number }} </b>
+                  on 
+                  <b> {{ voucher.flight_date }}</b>?
+            </p>
+            
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-success mt-5" (click)="invalidateVoucher()">Invalidate</button>
+        </div>
+    </div>
+</div>
+

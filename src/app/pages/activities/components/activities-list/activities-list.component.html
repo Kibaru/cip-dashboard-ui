@@ -1,0 +1,41 @@
+    <div class="container-fluid">
+
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">Your Products</p>
+            </div>
+            <div class="card-body">
+             
+                <!-- <div class=" mt-2"> -->
+                    <div class="row text-center"  style="padding: 10px;">
+                        <div class="col"><a class="btn btn-primary btn-sm" type="button" [routerLink]="['new']">Add New Product</a></div>
+                    </div>
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let activity of activities">
+                                <td class="text-center">{{activity.id}}</td>
+                                <td>
+                                    <img class="img-fluid d-block mx-auto image w-100" 
+                                        ngp-lazy
+                                        style="object-fit:contain;width:150px;height:150px;" [src]="activity.photos[0] ? activity.photos[0].file_location : ''">
+                                </td>
+                                <td class="text-center">{{activity.name}}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-block" type="button" [routerLink]="['activity', activity.id ]" >Edit</a>
+                                    <button class="btn btn-danger btn-block" type="button" (click)="deleteActivity(activity.id)" >Delete</button>                                      
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+              
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,258 @@
+<tabset>
+    <tab heading="All Bookings">
+        <div class="card shadow" style="position: relative">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold"></p>
+            </div>
+            <div class="card-body">
+                <!-- <div class=" mt-2"> -->
+                    <table id="allTable" [hidden]="!(bookings.length > 0)" datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger" class="row-border hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                
+                                <th>Date </th>
+                                <th>Booking For</th>
+                                <th>Contact</th>
+                                <th>Booking Details</th>
+                                <th>Client Note</th>
+                                <th>Payment Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let entry of bookings">
+                                <td>{{ entry.id }}</td>
+                                
+                                <td>{{ entry.created_at | date : 'medium'}} </td>
+                                <td>{{ entry.cart.cart_date | date : 'longDate' }}</td>
+                                <td>
+                                    <strong>{{ entry.firstname }}&nbsp;{{ entry.lastname }}</strong><br>
+                                    {{ entry.email_address }}<br>
+                                    {{ entry.phone_number }}<br>
+                               
+                                </td>
+                                <td>
+                                    <div *ngFor="let cart_item of (entry.cart.cart_items)">
+                                        <div *ngIf="cart_item.cart_item_type == 2">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}}</strong><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_adults > 0">x {{ cart_item.item_adults}} Adult(s)</small><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_children > 0">x {{ cart_item.item_children}} Children(s)</small><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_infants > 0">x {{ cart_item.item_adults}} Infant(s)</small><br>
+                                            <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                <br>
+                                            </div>
+                                            <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 3">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}}  x {{ cart_item.item_qty}} Person(s)</strong><br>
+                                            <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                <br>
+                                            </div>
+                                            <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                <br>
+                                            </div>
+                                           
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 9">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}} </strong><br>
+                                            <small>
+                                                
+                                                <div *ngFor="let session of (cart_item.sessions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-clock fa-xs text-black-300"></i>&nbsp;&nbsp;{{ session.name}} <br>&nbsp;&nbsp;&nbsp;&nbsp; - {{ session.qty}} Person(s)
+                                                    <br>
+                                                </div>
+                                                <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                    <br>
+                                                </div>
+                                                <br>
+                                                
+                                                <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                    <br>
+                                                </div>
+                                            </small>
+                                           
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 6">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}} </strong><br>
+                                            <small>
+                                                
+                                                <div *ngFor="let package of (cart_item.packages)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ package.name}} <br>&nbsp;&nbsp;&nbsp;&nbsp; - {{ package.qty}} Person(s)
+                                                    <br>
+                                                </div>
+                                                <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                    <br>
+                                                </div>
+                                                <br>
+                                                
+                                                <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                    <br>
+                                                </div>
+                                            </small>
+                                           
+                                        </div>
+                                        <br>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{entry.note}}
+                                </td>
+                                <td>
+                                    <strong>{{entry.payment_method}}</strong><br>
+                                    {{entry.cart.cart_total | currency : entry.company.currencies[0].code+' '}}<br>
+                                    <button *ngIf="entry.status == 'PLACED' ; else failedPayment" class="btn btn-warning btn-sm" type="button">PENDING</button><br>
+                                    <ng-template #failedPayment>
+                                        <button *ngIf="entry.status == 'FAILED' else goodPayment" class="btn btn-danger btn-sm" type="button">{{entry.status}}</button><br>
+                                    </ng-template>
+                                    
+                                    <ng-template #goodPayment>
+                                        <button class="btn btn-success btn-sm" type="button">{{entry.status}}</button><br>
+                                    </ng-template>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>      
+            </div>
+            <ngx-ui-loader [fgsType]="spinner" [overlayColor]="'rgba(78, 115, 223,.3)'" [loaderId]="'bookings-table-loader'"></ngx-ui-loader>
+        </div>
+    </tab>
+    <tab heading="Completed Payments ">
+        <div class="card shadow" style="position: relative">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold"></p>
+            </div>
+            <div class="card-body">
+                <!-- <div class=" mt-2"> -->
+                    <table id="allTable" [hidden]="!(bookingsCompleted.length > 0)" datatable [dtOptions]="dtOptions2" [dtTrigger]="dtTrigger" class="row-border hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                
+                                <th>Date </th>
+                                <th>Booking For</th>
+                                <th>Contact</th>
+                                <th>Booking Details</th>
+                                <th>Client Note</th>
+                                <th>Payment Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let entry of bookingsCompleted">
+                                <td>{{ entry.id }}</td>
+                                
+                                <td>{{ entry.created_at | date : 'medium'}} </td>
+                                <td>{{ entry.cart.cart_date | date : 'longDate' }}</td>
+                                <td>
+                                    <strong>{{ entry.firstname }}&nbsp;{{ entry.lastname }}</strong><br>
+                                    {{ entry.email_address }}<br>
+                                    {{ entry.phone_number }}<br>
+                               
+                                </td>
+                                <td>
+                                    <div *ngFor="let cart_item of (entry.cart.cart_items)">
+                                        <div *ngIf="cart_item.cart_item_type == 2">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}}</strong><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_adults > 0">x {{ cart_item.item_adults}} Adult(s)</small><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_children > 0">x {{ cart_item.item_children}} Children(s)</small><br>
+                                            &nbsp;&nbsp;&nbsp;<small *ngIf="cart_item.item_infants > 0">x {{ cart_item.item_adults}} Infant(s)</small><br>
+                                            <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                <br>
+                                            </div>
+                                            <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 3">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}}  x {{ cart_item.item_qty}} Person(s)</strong><br>
+                                            <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                <br>
+                                            </div>
+                                            <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                <br>
+                                            </div>
+                                           
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 9">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}} </strong><br>
+                                            <small>
+                                                
+                                                <div *ngFor="let session of (cart_item.sessions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-clock fa-xs text-black-300"></i>&nbsp;&nbsp;{{ session.name}} <br>&nbsp;&nbsp;&nbsp;&nbsp; - {{ session.qty}} Person(s)
+                                                    <br>
+                                                </div>
+                                                <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                    <br>
+                                                </div>
+                                                <br>
+                                                
+                                                <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                    <br>
+                                                </div>
+                                            </small>
+                                           
+                                        </div>
+                                        <div *ngIf="cart_item.cart_item_type == 6">
+                                            <i class="fas fa-shopping-bag fa-xs text-black-300"></i>&nbsp;<strong>{{ cart_item.item_name}} </strong><br>
+                                            <small>
+                                                
+                                                <div *ngFor="let package of (cart_item.packages)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ package.name}} <br>&nbsp;&nbsp;&nbsp;&nbsp; - {{ package.qty}} Person(s)
+                                                    <br>
+                                                </div>
+                                                <div *ngFor="let inclusion of (cart_item.inclusions)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-check fa-xs text-black-300"></i>&nbsp;&nbsp;{{ inclusion.name}}
+                                                    <br>
+                                                </div>
+                                                <br>
+                                                
+                                                <div *ngFor="let enhancement of (cart_item.enhancements)">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plus fa-xs text-black-300"></i>&nbsp;&nbsp;{{ enhancement.name}}  x {{ enhancement.qty}}
+                                                    <br>
+                                                </div>
+                                            </small>
+                                           
+                                        </div>
+                                        <br>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{entry.note}}
+                                </td>
+                                <td>
+                                    <strong>{{entry.payment_method}}</strong><br>
+                                    {{entry.cart.cart_total | currency : entry.company.currencies[0].code+' '}}<br>
+                                    <button *ngIf="entry.status == 'PLACED' ; else failedPayment" class="btn btn-warning btn-sm" type="button">PENDING</button><br>
+                                    <ng-template #failedPayment>
+                                        <button *ngIf="entry.status == 'FAILED' else goodPayment" class="btn btn-danger btn-sm" type="button">{{entry.status}}</button><br>
+                                    </ng-template>
+                                    
+                                    <ng-template #goodPayment>
+                                        <button class="btn btn-success btn-sm" type="button">{{entry.status}}</button><br>
+                                    </ng-template>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>      
+            </div>
+            <ngx-ui-loader [fgsType]="spinner" [overlayColor]="'rgba(78, 115, 223,.3)'" [loaderId]="'bookings-table-loader'"></ngx-ui-loader>
+        </div>
+    </tab>
+</tabset>

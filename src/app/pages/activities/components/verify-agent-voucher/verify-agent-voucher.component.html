@@ -1,0 +1,163 @@
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="col-md-12">
+            <label for="service"><strong>Service</strong></label>
+            <input class="form-control" [(ngModel)]="voucherDetails.service"  type="text" readonly>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-6 p-4">
+            <div class="text-center">
+                <p><strong>Voucher Details</strong></p>            
+            </div>
+            <div class="form-group" >
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>First Name</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.fname"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username"><strong>Surname</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.lname"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Flight Date</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.flight_date"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username"><strong>Flight Number</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.flight_number"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Origin</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.flight_origin"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username"><strong>Destination</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.flight_destination"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Class</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.compartment_code"  type="text" readonly>
+                    </div>
+  
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username"><strong>Airline</strong></label>
+                        <input class="form-control" [(ngModel)]="voucherDetails.airline"  type="text" readonly>
+                    </div>
+
+                </div>
+                
+ 
+                    
+            </div>
+        </div>
+        <div class="col-md-6 p-4">
+            <div class="text-center">
+                <p><strong>Boarding Pass Details</strong></p>            
+            </div>
+            <div class="form-group" >
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_fname" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_fname" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>First Name</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.fname"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_lname" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_lname" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Surname</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.lname"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_flight_date" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_flight_date" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Flight Date</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.flight_date"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_flight_number" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_flight_number" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Flight Number</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.flight_number"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_flight_origin" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_flight_origin" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Origin</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.flight_origin"  type="text" readonly>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_flight_destination" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_flight_destination" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Destination</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.flight_destination"  type="text" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_compartment_code" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_compartment_code" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Class</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.compartment_code"  type="text" readonly>
+                    </div>
+  
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="username">
+                            <i *ngIf="!wrong_airline" class="fas fa-check text-success"> </i> 
+                            <i *ngIf="wrong_airline" class="fas fa-times text-danger"> </i>
+                            &nbsp;&nbsp;<strong>Airline</strong></label>
+                        <input class="form-control" [(ngModel)]="boardingPassDetails.airline"  type="text" readonly>
+                    </div>
+
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="boarding_pass_match" class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-success mt-5" (click)="redeemVoucher()">Save Guest</button>
+        </div>
+    </div>
+    <div *ngIf="!boarding_pass_match" class="row p-4">
+        <div class="col-md-12 text-center">
+            <div class="alert alert-danger">
+                <strong>Infomation Mismatch!</strong><br> Boarding Pass Information Does not match voucher information.
+                
+            </div>
+            <button type="submit" class="btn btn-success mt-5" (click)="scanAgain()">Scan Again</button>
+        </div>
+        
+    </div>
+
+    
+
+
+</div>
+

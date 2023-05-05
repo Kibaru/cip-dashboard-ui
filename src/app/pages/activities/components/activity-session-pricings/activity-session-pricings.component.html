@@ -1,0 +1,196 @@
+<div class="p-2">
+    <div class="p-2">
+     <tabset [justified]="true">
+         <tab heading="Standard Pricing">
+             <div *ngIf="activity.type == 9" class="row p-4">
+                <div class="col-md-12">
+                    <div class="row p-1">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Session Start</strong></label>
+                                    <input class="form-control" [(ngModel)]="new_passenger_session.session_start" type="time" required name="batch_number">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Session End</strong></label>
+                                    <input class="form-control" [(ngModel)]="new_passenger_session.session_end" type="time" required name="batch_number">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="username"><strong>Price</strong></label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div *ngFor="let price_key of getKVarray(new_passenger_session.pricings[0].base_price)" class="row" >
+                                                <div class="col-md-6">
+                                                    <input class="form-control" (change)="changeKey(price_key, $event.target , new_passenger_session.pricings[0].base_price)"  value="{{price_key}}" type="text" required name="batch_number">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" [(ngModel)]="new_passenger_session.pricings[0].base_price[price_key]" type="number" required name="batch_number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm " (click)="addSessionPriceSet(new_passenger_session)" title="ADD"><span class="material-icons">add</span></button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-warning btn-sm "  (click)="removeSessionPriceSet(new_passenger_session)" title="REMOVE"><span class="material-icons">remove</span></button>
+                                            </div>
+                        
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>                  
+                        </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success btn-block btn-sm" (click)="addNewPassengerSession()"  type="button">Add</button>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                    <div *ngFor="let session of activity.sessions" class="row pb-5">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Session Start</strong></label>
+                                        <input class="form-control" [(ngModel)]="session.session_start" type="time" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Session End</strong></label>
+                                        <input class="form-control" [(ngModel)]="session.session_end" type="time" required name="batch_number">
+                                    </div>
+                                </div>                  
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Person(s)</strong></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Price</strong></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div *ngFor="let price_key of getKVarray(session.pricings[0].base_price)" class="row" >
+                                    <div class="col-md-6">
+                                        <input class="form-control" (change)="changeKey(price_key, $event.target , session.pricings[0].base_price)"  value="{{price_key}}" type="text" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" [(ngModel)]="session.pricings[0].base_price[price_key]" type="number" required name="batch_number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-warning btn-sm " (click)="addSessionPriceSet(session)" title="ADD"><span class="material-icons">add</span></button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-warning btn-sm "  (click)="removeSessionPriceSet(session)" title="REMOVE"><span class="material-icons">remove</span></button>
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-info btn-block btn-sm" (click)="updateSession(session)"  type="button">Update</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-danger btn-block btn-sm" (click)="deleteSession(session)"  type="button">Delete</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>      
+             </div>
+             <div *ngIf="activity.type == 7" class="row p-4">
+                <div class="col-md-12">
+                    <div class="row p-1">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="username"><strong>Session Start</strong></label>
+                                        <input class="form-control" [(ngModel)]="new_non_passenger_session.session_start" type="time" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="username"><strong>Session End</strong></label>
+                                        <input class="form-control" [(ngModel)]="new_non_passenger_session.session_end" type="time" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="username"><strong>Price</strong></label>
+                                        <input class="form-control" [(ngModel)]="new_non_passenger_session.pricings[0].base_price[1]" type="number" required name="batch_number">
+                                    </div>
+                                    
+                                </div>                  
+                            </div>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success btn-block btn-sm" (click)="addNewNonPassengerSession()"  type="button">Add</button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    
+                    <div *ngFor="let session of activity.sessions" class="row pb-5">
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Session Start</strong></label>
+                                        <input class="form-control" [(ngModel)]="session.session_start" type="time" required name="batch_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="username"><strong>Session End</strong></label>
+                                        <input class="form-control" [(ngModel)]="session.session_end" type="time" required name="batch_number">
+                                    </div>
+                                </div>                  
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+    
+                                    <div class="col-md-12">
+                                        <label for="username"><strong>Price</strong></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div *ngFor="let price_key of getKVarray(session.pricings[0].base_price)" class="row" >
+    
+                                    <div class="col-md-12">
+                                        <input class="form-control" [(ngModel)]="session.pricings[0].base_price[price_key]" type="number" required name="batch_number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <button class="btn btn-info btn-block btn-sm" (click)="updateSession(session)"  type="button">Update</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-danger btn-block btn-sm" (click)="deleteSession(session)"  type="button">Delete</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>      
+             </div>
+             <!-- <ul class="list-group">
+                 <li  class="list-group-item">
+                     <span><strong> {{standard_pricing.date_range.replace("~", " to ")}}</strong></span>&nbsp;&nbsp;
+                     <button class="btn btn-warning btn-xs" title="Delete"><span class="material-icons">delete</span></button>
+                 </li>
+             </ul> -->
+         </tab>
+     
+     </tabset>
+    </div>
+     
+ </div>

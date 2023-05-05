@@ -1,0 +1,124 @@
+<div class="modal-lg" >
+    <div class="row">
+        <div class="col-md-6">
+            <label for="email"><strong> From </strong></label>
+            <input class="form-control" [(ngModel)]="fr_date" type="date" required placeholder="" name="name"> &nbsp;&nbsp;
+        </div>
+        <div class="col-md-6">
+            <label for="email"><strong> To</strong></label>
+            <input class="form-control" [(ngModel)]="to_date" type="date" required placeholder="" name="latitude"> &nbsp;&nbsp;
+        </div>
+    </div>
+    
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="username"><strong>Adult</strong></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="username"><small>Person(s)</small></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="username"><small>Base Price</small></label>
+                </div>
+        
+            </div>
+            <div *ngFor="let price of getKVarray(adult_pricing)" class="row">
+                <div class="col-md-6">
+                    <input class="form-control" value="{{price}}" (change)="updateAdultPricingPersons($event , price)" type="text" required >
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" [(ngModel)]="adult_pricing[price]" type="text" required >
+                </div>
+            </div>
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="addAdultPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="removeAdultPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="username"><strong>Child</strong></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="username"><small>Person(s)</small></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="username"><small>Base Price</small></label>
+                </div>
+        
+            </div>
+            <div *ngFor="let price of getKVarray(child_pricing)" class="row">
+                <div class="col-md-6">
+                    <input class="form-control" value="{{price}}" (change)="updateChildPricingPersons($event , price)" type="text" required >
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" [(ngModel)]="child_pricing[price]" type="text" required >
+                </div>
+            </div>
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="addChildPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="removeChildPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="username"><strong>Infant</strong></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="username"><small>Person(s)</small></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="username"><small>Base Price</small></label>
+                </div>
+        
+            </div>
+            <div *ngFor="let price of getKVarray(infant_pricing)" class="row">
+                <div class="col-md-6">
+                    <input class="form-control" value="{{price}}" (change)="updateInfantPricingPersons($event , price)" type="text" required >
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" [(ngModel)]="infant_pricing[price]" type="text" required >
+                </div>
+            </div>
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="addInfantPriceset()" title="ADD"><span class="material-icons">add</span></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-sm " (click)="removeInfantPriceset()" title="REMOVE"><span class="material-icons">remove</span></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+</div>

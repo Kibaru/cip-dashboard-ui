@@ -1,0 +1,28 @@
+<div class="row">
+       
+    <div class="col-md-12">
+        <label for="email"><strong> Date </strong></label>
+        <input class="form-control" [(ngModel)]="chosen_date" type="date" required placeholder="" name="name"> &nbsp;&nbsp;
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group mb-3">
+            
+            <input class="form-control" [(ngModel)]="persons" type="text" required name="batch_number" readonly>
+            <div class="input-group-append">
+              <span class="input-group-text" >Person(s)</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" >Price</span>
+            </div>
+            <input class="form-control" [(ngModel)]="base_price" type="number" required name="batch_number">
+        </div>
+    </div>
+
+</div>

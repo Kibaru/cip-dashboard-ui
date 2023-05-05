@@ -1,0 +1,35 @@
+<div class="text-center p-2">
+    <!-- <button class="btn btn-info btn-sm " (click)="updateName()" type="button">Add New Photo</button> -->
+    <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+            <ngp-image-picker 
+                [_config]="imagePickerConf" 
+                [_imageSrc]="initialImage" 
+                ($imageChanged)="onImageChanged($event)">
+            </ngp-image-picker>
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>
+    <div class="row"  *ngIf="(imageEncoding !== '')">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2 p-1">
+            <button class="btn btn-info btn-sm " (click)="uploadPhoto()" type="button">Add Photo</button>
+        </div>
+        <div class="col-md-5">
+        </div>
+    </div>              
+    <div  class="row">
+        <div *ngFor="let photo of activity_photos" class="col-md-4 p-3">
+            <img class="img-fluid d-block mx-auto image w-100" 
+                            ngp-lazy
+                            style="object-fit:contain;width:150px;height:150px;" [src]="(photo.file_location.length > 0) ? photo.file_location : ''">
+                            <button class="btn btn-danger btn-xs" (click)="deletePhoto(photo.id)" type="button">Delete</button>
+
+        </div>
+        
+    </div>
+</div>

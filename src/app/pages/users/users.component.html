@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Users</p>
+        </div>
+        <div class="card-body">
+         
+            <!-- <div class=" mt-2"> -->
+                <div class="row text-center"  style="padding: 10px;">
+                    <div class="col"><button class="btn btn-primary btn-sm" type="button" (click)="addNewUser()">Add New User</button></div>
+                </div>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th class="text-center">Names</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Is Admin</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td class="text-center">{{user.id}}</td>
+                            <td class="text-center">{{user.name}}</td>
+                            <td class="text-center">{{user.email}}</td>
+                            <td class="text-center">
+                                <div *ngIf="!user.is_travel_agent">
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" (click)="toggleAdminUser(user.id)" [checked]="user.is_admin == 1">
+                                </div>
+                            </td>
+                       
+                            <td>
+                                <button class="btn btn-danger btn-sm btn-block" type="button" (click)="deleteUser(user.id , user.name)" >Delete</button>                                    
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+          
+        </div>
+    </div>
+</div>

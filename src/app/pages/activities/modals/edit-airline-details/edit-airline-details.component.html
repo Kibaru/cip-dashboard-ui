@@ -1,0 +1,32 @@
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="username"><strong>Name</strong></label>
+            <input class="form-control" [(ngModel)]="airline.full_name"  type="text" required name="batch_number">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="username"><strong>IATA Code</strong></label>
+            <input class="form-control" [(ngModel)]="airline.iata_code"  type="text" required name="batch_number">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="username"><strong>Voucher Price</strong></label>
+            <input class="form-control" [(ngModel)]="airline.voucher_price"  type="number" required name="price">
+        </div>
+        <div class="col-md-6">
+            <label for="username"><strong>Tax Rate (%)</strong></label>
+            <input class="form-control" [(ngModel)]="airline.tax_rate"  type="number" required name="rate">
+        </div>
+
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-success mt-5" (click)="createAirline()">Create Airline</button>
+        </div>
+    </div> -->
+        
+</div>
